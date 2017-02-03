@@ -1,17 +1,16 @@
 %define version unknown
-%define bin_name zacherkash
 %define debug_package %{nil}
 
-Name:           %{bin_name}
+Name:           zacherkash
 Version:        %{version}
 Release:        1%{?dist}
 Summary:        zacherkash
 License:        BSD
-URL:            http://git.itv.restr.im/infra/%{bin_name}
+URL:            http://git.itv.restr.im/infra/zacherkash
 Source1:        zacherkash.init
 Source2:        zacherkash-logrotate.in
 Source3:        zacherkash.yaml
-Source:         %{bin_name}-%{version}.tar.gz
+Source:         zacherkash-%{version}.tar.gz
 BuildRequires:  make
 BuildRequires:  git
 
@@ -39,11 +38,11 @@ make
 
 %install
 mkdir -p %{buildroot}%{restream_bin_dir}
-%{__install} -m 0755 -p bin/%{bin_name} %{buildroot}%{restream_bin_dir}
+%{__install} -m 0755 -p bin/zacherkash %{buildroot}%{restream_bin_dir}
 %{__mkdir} -p %{buildroot}/%{_sysconfdir}/init.d
 %{__mkdir} -p %{buildroot}/%{_sysconfdir}/logrotate.d
-%{__install} -m 0755 -p %{SOURCE1} %{buildroot}/%{_sysconfdir}/init.d/%{name}
-%{__install} -m 0644 -p %{SOURCE2} %{buildroot}/%{_sysconfdir}/logrotate.d/%{name}
+%{__install} -m 0755 -p %{SOURCE1} %{buildroot}/%{_sysconfdir}/init.d/zacherkash
+%{__install} -m 0644 -p %{SOURCE2} %{buildroot}/%{_sysconfdir}/logrotate.d/zacherkash
 %{__install} -m 0644 -p %{SOURCE3} %{buildroot}/%{_sysconfdir}/zacherkash.yaml
 
 %clean
@@ -51,8 +50,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%{restream_bin_dir}/%{bin_name}
+%{restream_bin_dir}/zacherkash
 %doc README.md
 %config(noreplace) %{_sysconfdir}/zacherkash.yaml
-%{_sysconfdir}/init.d/%{name}
-%{_sysconfdir}/logrotate.d/%{name}
+%{_sysconfdir}/init.d/zacherkash
+%{_sysconfdir}/logrotate.d/zacherkash
