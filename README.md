@@ -12,7 +12,7 @@ log_file: /var/log/zacherkash.log
 # слушаем:
 bind: 0.0.0.0:8080
 
-# работает также как nginx-upstream:
+# если указан, то работает также как nginx-upstream (иначе работает как простая http-proxy):
 upstream: 192.168.202.28:9081
 
 # переписываем содержимое body
