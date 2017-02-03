@@ -1,0 +1,6 @@
+src/github.com/yuin/gopher-lua/parse/parser.go
+bin
+rpm-tmp.*
+rpm/BUILD/*
+rpm/SOURCES/*
+pkg

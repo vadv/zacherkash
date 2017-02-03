@@ -1,0 +1,11 @@
+# путь до лог файла
+log_file: /tmp/zacherkash.log
+
+# слушаем интерфейс
+bind: 0.0.0.0:8080
+
+body_rewrite:
+#   rewrite all `www.opennet.ru` => `ru.opennet.www`
+    (www)\.(opennet)\.(ru): $3.$2.$1
+#   rewrite all `yandex.ru` => `yandex.com`
+    (yandex)\.ru: $1.com
