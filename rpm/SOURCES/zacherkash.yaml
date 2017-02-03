@@ -1,5 +1,6 @@
 log_file: /var/log/zacherkash/zacherkash.log
 bind: 127.0.0.1:8080
+upstream: 192.168.202.28:9081
 body_rewrite:
 #   rewrite all `google.com` => `google.ru`
     google\.com: google.ru

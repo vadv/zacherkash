@@ -9,7 +9,10 @@ import (
 	"strconv"
 )
 
-var bodyRewriters = make([]*bodyRewrite, 0)
+var (
+	Upstream      = ""
+	bodyRewriters = make([]*bodyRewrite, 0)
+)
 
 type bodyRewrite struct {
 	reg *regexp.Regexp // то что матчится
@@ -33,6 +36,10 @@ type BodyRewriter struct {
 }
 
 func (t *BodyRewriter) RoundTrip(req *http.Request) (resp *http.Response, err error) {
+
+	if Upstream != "" {
+		req.Host = Upstream
+	}
 
 	log.Printf(`[INFO] %s - %s %s "%s" "%s"`, req.RemoteAddr, req.Method, req.URL, req.UserAgent(), req.Referer())
 

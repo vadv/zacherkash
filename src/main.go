@@ -26,6 +26,7 @@ type Config struct {
 	Bind        string            `yaml:"bind"`
 	LogFile     string            `yaml:"log_file"`
 	BodyRewrite map[string]string `yaml:"body_rewrite"`
+	Upstream    string            `yaml:"upstream"`
 }
 
 func main() {
@@ -63,6 +64,11 @@ func main() {
 		if err := ioutil.WriteFile(*pid_file, []byte(fmt.Sprintf("%d", os.Getpid())), 0644); err != nil {
 			log.Fatalf("[ERROR] Write pid file: %s\n", err.Error())
 		}
+	}
+
+	// переписываем host
+	if config.Upstream != "" {
+		transport.Upstream = config.Upstream
 	}
 
 	log.SetOutput(fd)
