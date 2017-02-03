@@ -1,0 +1,12 @@
+/var/log/zacherkash/zacherkash.log {
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+    create 0640 zacherkash zacherkash
+    sharedscripts
+    postrotate
+        [ -e /var/run/zacherkash/zacherkash.pid ] && /etc/init.d/zacherkash restart >/dev/null
+    endscript
+}

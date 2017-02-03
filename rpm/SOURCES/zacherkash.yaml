@@ -1,0 +1,7 @@
+log_file: /var/log/zacherkash/zacherkash.log
+bind: 127.0.0.1:8080
+body_rewrite:
+#   rewrite all `google.com` => `google.ru`
+    google\.com: google.ru
+#   rewrite all `yandex.ru` => `yandex.com`
+    (yandex)\.ru: $1.com

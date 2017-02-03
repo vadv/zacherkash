@@ -2,5 +2,5 @@ src/github.com/yuin/gopher-lua/parse/parser.go
 bin
 rpm-tmp.*
 rpm/BUILD/*
-rpm/SOURCES/*
+rpm/SOURCES/*.tar.*
 pkg
