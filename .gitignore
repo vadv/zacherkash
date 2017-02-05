@@ -4,3 +4,4 @@ rpm-tmp.*
 rpm/BUILD/*
 rpm/SOURCES/*.tar.*
 pkg
+*.exe

@@ -12,6 +12,7 @@ import (
 
 	"gopkg.in/yaml.v2"
 
+	"daemon"
 	"transport"
 )
 
@@ -50,14 +51,15 @@ func main() {
 		log.Fatalf("[ERROR] Config error: %s\n", err.Error())
 	}
 
-	if err := transport.BuildBodyRewrites(config.BodyRewrite); err != nil {
-		log.Fatalf("[ERROR] Compile rewite rules error: %s\n", err.Error())
-	}
-
 	os.MkdirAll(filepath.Dir(config.LogFile), 0755)
 	fd, err := os.OpenFile(config.LogFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
 		log.Fatalf("[ERROR] Open log file: %s\n", err.Error())
+	}
+	daemon.Daemonize(fd)
+
+	if err := transport.BuildBodyRewrites(config.BodyRewrite); err != nil {
+		log.Fatalf("[ERROR] Compile rewite rules error: %s\n", err.Error())
 	}
 
 	if *pid_file != "" {
